@@ -22,7 +22,7 @@ const Document = () => (
 				href='/assets/favicon-16x16.png'
 			/>
 		</Head>
-		<body>
+		<body className='bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100'>
 			<Main />
 			<NextScript />
 		</body>
