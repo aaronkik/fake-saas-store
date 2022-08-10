@@ -17,6 +17,7 @@
     "react-animate-height": "^3.0.4",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "stripe": "^10.1.0",
     "tailwind-merge": "^1.5.1"
   },
   "devDependencies": {
