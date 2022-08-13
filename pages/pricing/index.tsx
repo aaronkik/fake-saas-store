@@ -52,6 +52,7 @@ const PricingPage = ({ monthlyUnitPrice, yearlyUnitPrice }: Props) => {
 									<span>Monthly billing</span>
 									<Switch
 										checked={interval === 'yearly'}
+										data-testid='togglePricingInterval'
 										onChange={() =>
 											setInterval((currentInterval) =>
 												currentInterval === 'monthly' ? 'yearly' : 'monthly'
@@ -81,7 +82,13 @@ const PricingPage = ({ monthlyUnitPrice, yearlyUnitPrice }: Props) => {
 							</Switch.Group>
 							<div className='my-8 mx-4 flex flex-col items-center rounded-md border-2 border-neutral-400 p-4 dark:border-neutral-600'>
 								<span className='flex flex-col items-center text-2xl font-semibold'>
-									{interval === 'monthly' ? monthlyUnitPrice : yearlyUnitPrice}{' '}
+									{interval === 'monthly' ? (
+										<span data-testid='monthlyUnitPrice'>
+											{monthlyUnitPrice}
+										</span>
+									) : (
+										<span data-testid='yearlyUnitPrice'>{yearlyUnitPrice}</span>
+									)}
 									<span className='text-xs'>per user</span>
 								</span>
 								<div className='mt-4 flex flex-col gap-2 border-t-[1px] border-neutral-400 pt-4 dark:border-neutral-600'>
