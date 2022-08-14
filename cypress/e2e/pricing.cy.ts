@@ -13,31 +13,31 @@ describe('Pricing', () => {
 		const GBPTextRegex = /^£\d{1,3}(,\d{1,3})*\.\d{2}$/;
 
 		const buttonSwitch = 'button[data-testid="togglePricingInterval"]';
-		const monthlyUnitPriceAttr = '[data-testid="monthlyUnitPrice"]';
-		const yearlyUnitPriceAttr = '[data-testid="yearlyUnitPrice"]';
+		const monthlyPriceTextAttr = '[data-testid="monthlyPriceText"]';
+		const yearlyPriceTextAttr = '[data-testid="yearlyPriceText"]';
 
 		cy.visit('/pricing');
 
-		cy.get(monthlyUnitPriceAttr)
+		cy.get(monthlyPriceTextAttr)
 			.should('exist')
 			.should('be.visible')
 			.contains(GBPTextRegex);
-		cy.get(yearlyUnitPriceAttr).should('not.exist');
+		cy.get(yearlyPriceTextAttr).should('not.exist');
 
 		cy.get(buttonSwitch).click();
 
-		cy.get(yearlyUnitPriceAttr)
+		cy.get(yearlyPriceTextAttr)
 			.should('exist')
 			.should('be.visible')
 			.contains(GBPTextRegex);
-		cy.get(monthlyUnitPriceAttr).should('not.exist');
+		cy.get(monthlyPriceTextAttr).should('not.exist');
 
 		cy.get(buttonSwitch).click();
 
-		cy.get(monthlyUnitPriceAttr)
+		cy.get(monthlyPriceTextAttr)
 			.should('exist')
 			.should('be.visible')
 			.contains(GBPTextRegex);
-		cy.get(yearlyUnitPriceAttr).should('not.exist');
+		cy.get(yearlyPriceTextAttr).should('not.exist');
 	});
 });

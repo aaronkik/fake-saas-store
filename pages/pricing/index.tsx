@@ -83,11 +83,11 @@ const PricingPage = ({ monthlyUnitPrice, yearlyUnitPrice }: Props) => {
 							<div className='my-8 mx-4 flex flex-col items-center rounded-md border-2 border-neutral-400 p-4 dark:border-neutral-600'>
 								<span className='flex flex-col items-center text-2xl font-semibold'>
 									{interval === 'monthly' ? (
-										<span data-testid='monthlyUnitPrice'>
+										<span data-testid='monthlyPriceText'>
 											{monthlyUnitPrice}
 										</span>
 									) : (
-										<span data-testid='yearlyUnitPrice'>{yearlyUnitPrice}</span>
+										<span data-testid='yearlyPriceText'>{yearlyUnitPrice}</span>
 									)}
 									<span className='text-xs'>per user</span>
 								</span>
