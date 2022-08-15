@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Container, Divider, Footer, Header } from '../../components';
+import { Container, Divider } from '../../components';
 import { PricingContent } from '../../components/pricing';
 import {
 	formatValueToGBP,
@@ -15,32 +15,24 @@ interface Props {
 }
 
 const PricingPage = ({ monthlyUnitPrice, yearlyUnitPrice }: Props) => (
-	<div>
+	<>
 		<Head>
 			<title>Pricing</title>
 		</Head>
-		<Header />
-		<main>
-			<Container>
-				<div className='flex flex-col items-center gap-2 py-8 px-4 text-center md:px-20 md:py-16'>
-					<h1 className='text-3xl font-black sm:text-5xl md:text-6xl'>
-						Pricing
-					</h1>
-					<p className='text-base text-neutral-700 dark:text-neutral-300 md:text-xl'>
-						Prices fetched via Stripe API at build time
-					</p>
-					<PricingContent
-						monthlyUnitPrice={monthlyUnitPrice}
-						yearlyUnitPrice={yearlyUnitPrice}
-					/>
-				</div>
-			</Container>
-			<Divider />
-		</main>
 		<Container>
-			<Footer />
+			<div className='flex flex-col items-center gap-2 py-8 px-4 text-center md:px-20 md:py-16'>
+				<h1 className='text-3xl font-black sm:text-5xl md:text-6xl'>Pricing</h1>
+				<p className='text-base text-neutral-700 dark:text-neutral-300 md:text-xl'>
+					Prices fetched via Stripe API at build time
+				</p>
+				<PricingContent
+					monthlyUnitPrice={monthlyUnitPrice}
+					yearlyUnitPrice={yearlyUnitPrice}
+				/>
+			</div>
 		</Container>
-	</div>
+		<Divider />
+	</>
 );
 
 export async function getStaticProps() {

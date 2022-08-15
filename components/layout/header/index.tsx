@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import Container from '../container';
-import Divider from '../divider';
-import { IconLogo, Logo } from '../icons';
+import Container from '../../container';
+import Divider from '../../divider';
+import { IconLogo, Logo } from '../../icons';
 
 const headerLinks = [
 	{ path: '/', name: 'Home' },

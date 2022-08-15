@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Container, Divider, Footer, Header } from '../components';
+import { Container, Divider } from '../components';
 import {
 	Benefits,
 	CallToAction,
@@ -9,44 +9,36 @@ import {
 } from '../components/homepage';
 import ReinforcementStatement from '../components/homepage/reinforcement-statement';
 
-const Home = () => {
-	return (
-		<div>
-			<Head>
-				<title>Home</title>
-			</Head>
-			<Header />
-			<main>
-				<Container>
-					<Hero />
-				</Container>
-				<Divider />
-				<Container>
-					<Benefits />
-				</Container>
-				<Divider />
-				<Container>
-					<ReinforcementStatement />
-				</Container>
-				<Divider />
-				<Container>
-					<Features />
-				</Container>
-				<Divider />
-				<Container>
-					<FAQ />
-				</Container>
-				<Divider />
-				<Container>
-					<CallToAction />
-				</Container>
-				<Divider />
-			</main>
-			<Container>
-				<Footer />
-			</Container>
-		</div>
-	);
-};
+const Home = () => (
+	<>
+		<Head>
+			<title>Home</title>
+		</Head>
+		<Container>
+			<Hero />
+		</Container>
+		<Divider />
+		<Container>
+			<Benefits />
+		</Container>
+		<Divider />
+		<Container>
+			<ReinforcementStatement />
+		</Container>
+		<Divider />
+		<Container>
+			<Features />
+		</Container>
+		<Divider />
+		<Container>
+			<FAQ />
+		</Container>
+		<Divider />
+		<Container>
+			<CallToAction />
+		</Container>
+		<Divider />
+	</>
+);
 
 export default Home;

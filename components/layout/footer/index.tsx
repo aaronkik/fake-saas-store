@@ -1,7 +1,7 @@
-import { Logo } from '../icons';
+import { Logo } from '../../icons';
 import Link from 'next/link';
 import { FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { LINKEDIN, TWITTER } from '../../constants/urls';
+import { LINKEDIN, TWITTER } from '../../../constants/urls';
 
 const footerLinks = [
 	{ path: '/pricing', name: 'Pricing' },
