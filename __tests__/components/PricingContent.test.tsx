@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PricingContent } from '../../components/pricing';
 
-describe('<PricingIntervalSwitch />', () => {
+describe('<PricingContent />', () => {
 	describe('Clicking the pricing button switch', () => {
 		it('Toggles monthly and yearly values', async () => {
 			const user = userEvent.setup();
