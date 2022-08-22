@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# msw
+public/mockServiceWorker.js
+
 # cypress
 cypress.env.json
 

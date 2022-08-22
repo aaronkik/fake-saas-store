@@ -1,5 +1,7 @@
 import EmailValidator from 'email-validator';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { ContactApiResponse } from '../../types/contact';
 import { Button } from '../button';
 import FormErrorMessage from '../form-error-message';
 
@@ -9,6 +11,9 @@ interface FormFields {
 }
 
 const ContactForm = () => {
+	const [contactApiResponse, setContactApiResponse] =
+		useState<ContactApiResponse | null>(null);
+
 	const {
 		formState: {
 			errors: { email: emailErrors, message: messageErrors },
@@ -21,16 +26,29 @@ const ContactForm = () => {
 			email: '',
 			message: '',
 		},
+		mode: 'onSubmit',
 	});
 
 	const submitContactForm = handleSubmit(async (fields) => {
 		try {
-			// eslint-disable-next-line no-console
-			console.log(fields);
+			const response = await fetch('/api/contact', {
+				body: JSON.stringify(fields),
+				headers: new Headers({
+					'Content-Type': 'application/json',
+				}),
+				method: 'POST',
+			});
+
+			const apiData = await response.json();
+
+			setContactApiResponse(apiData);
+
+			if (apiData.error) return;
+
 			resetForm({ email: '', message: '' });
 		} catch (error) {
-			// eslint-disable-next-line no-console
 			console.error(error);
+			setContactApiResponse({ error: 'Unknown error occured' });
 		}
 	});
 
@@ -75,6 +93,24 @@ const ContactForm = () => {
 				<FormErrorMessage data-testid='messageErrorText'>
 					{messageErrors.message}
 				</FormErrorMessage>
+			)}
+			{contactApiResponse?.data && (
+				<p
+					className='text-sm text-green-500 dark:text-green-300'
+					data-testid='contactSuccessText'
+					role='alert'
+				>
+					{contactApiResponse.data}
+				</p>
+			)}
+			{contactApiResponse?.error && (
+				<p
+					className='text-sm text-red-500 dark:text-red-300'
+					data-testid='contactErrorText'
+					role='alert'
+				>
+					{contactApiResponse.error}
+				</p>
 			)}
 			<Button type='submit'>Submit</Button>
 		</form>
