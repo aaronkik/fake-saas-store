@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { ContactApiResponse } from '../../types/contact';
 import { Button } from '../button';
 import FormErrorMessage from '../form-error-message';
+import FormLabel from '../form-label';
+import ContactFormResponse from './contact-form-response';
 
 interface FormFields {
 	email: string;
@@ -53,13 +55,12 @@ const ContactForm = () => {
 	});
 
 	return (
-		<form id='contact-form' onSubmit={submitContactForm}>
-			<label
-				className='block text-sm font-medium text-neutral-600 dark:text-neutral-400'
-				htmlFor='email'
-			>
-				Email
-			</label>
+		<form
+			className='my-4 flex flex-col gap-2 w-full max-w-sm'
+			id='contact-form'
+			onSubmit={submitContactForm}
+		>
+			<FormLabel htmlFor='email'>Email</FormLabel>
 			<input
 				autoComplete='email'
 				className='focus:border-brand focus:ring-brand rounded-md border-transparent bg-neutral-200 text-neutral-700 transition-all duration-150 placeholder:font-medium placeholder:text-black/50 focus:bg-transparent dark:bg-neutral-800 dark:text-neutral-100 dark:placeholder:text-white/50 dark:focus:border-green-300 dark:focus:bg-transparent dark:focus:ring-green-300'
@@ -77,12 +78,7 @@ const ContactForm = () => {
 					{emailErrors.message}
 				</FormErrorMessage>
 			)}
-			<label
-				className='block text-sm font-medium text-neutral-600 dark:text-neutral-400'
-				htmlFor='message'
-			>
-				Message
-			</label>
+			<FormLabel htmlFor='message'>Message</FormLabel>
 			<textarea
 				id='message'
 				className='focus:border-brand focus:ring-brand rounded-md border-transparent bg-neutral-200 text-neutral-700 transition-all duration-150 placeholder:font-medium placeholder:text-black/50 focus:bg-transparent dark:bg-neutral-800 dark:text-neutral-100 dark:placeholder:text-white/50 dark:focus:border-green-300 dark:focus:bg-transparent dark:focus:ring-green-300'
@@ -94,25 +90,10 @@ const ContactForm = () => {
 					{messageErrors.message}
 				</FormErrorMessage>
 			)}
-			{contactApiResponse?.data && (
-				<p
-					className='text-sm text-green-500 dark:text-green-300'
-					data-testid='contactSuccessText'
-					role='alert'
-				>
-					{contactApiResponse.data}
-				</p>
-			)}
-			{contactApiResponse?.error && (
-				<p
-					className='text-sm text-red-500 dark:text-red-300'
-					data-testid='contactErrorText'
-					role='alert'
-				>
-					{contactApiResponse.error}
-				</p>
-			)}
-			<Button type='submit'>Submit</Button>
+			<ContactFormResponse contactFormResponse={contactApiResponse} />
+			<Button className='mt-2 self-end' type='submit'>
+				Submit
+			</Button>
 		</form>
 	);
 };
