@@ -2,7 +2,7 @@ import { Switch } from '@headlessui/react';
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import { useState } from 'react';
-import { ButtonLink } from '../../components';
+import { ButtonLink } from '~/components';
 
 const pricingFeatures = [
 	'Ultra blazingly fast',

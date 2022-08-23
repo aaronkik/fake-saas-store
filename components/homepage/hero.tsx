@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { PRODUCT_VIDEO } from '../../constants/urls';
-import { ButtonLink } from '../button';
+import { ButtonLink } from '~/components';
+import { PRODUCT_VIDEO } from '~/constants/urls';
 
 const Hero = () => (
 	<div className='flex flex-col gap-8 py-8 px-4 text-left md:flex-row md:items-center md:py-20 md:px-12'>

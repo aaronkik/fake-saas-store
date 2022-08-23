@@ -1,13 +1,13 @@
 import Head from 'next/head';
-import { Container, Divider } from '../components';
+import { Container, Divider } from '~/components';
 import {
 	Benefits,
 	CallToAction,
 	FAQ,
 	Features,
 	Hero,
-} from '../components/homepage';
-import ReinforcementStatement from '../components/homepage/reinforcement-statement';
+	ReinforcementStatement,
+} from '~/components/homepage';
 
 const Home = () => (
 	<>

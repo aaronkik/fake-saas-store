@@ -1,10 +1,8 @@
 import EmailValidator from 'email-validator';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ContactApiResponse } from '../../types/contact';
-import { Button } from '../button';
-import FormErrorMessage from '../form-error-message';
-import FormLabel from '../form-label';
+import { Button, FormErrorMessage, FormLabel } from '~/components';
+import { ContactApiResponse } from '~/types/contact';
 import ContactFormResponse from './contact-form-response';
 
 interface FormFields {

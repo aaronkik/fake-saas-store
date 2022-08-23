@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import { ButtonLink } from '../button';
-import Section from '../section';
-import SectionHeader from '../section-header';
+import { ButtonLink, Section, SectionHeader } from '~/components';
 
 const CallToAction = () => (
 	<Section className='flex flex-col items-start gap-4 md:flex-row md:items-center'>

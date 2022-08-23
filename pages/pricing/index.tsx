@@ -1,13 +1,13 @@
 import Head from 'next/head';
-import { Container, Divider } from '../../components';
-import { PricingContent } from '../../components/pricing';
+import { Container, Divider } from '~/components';
+import { PricingContent } from '~/components/pricing';
 import {
 	formatValueToGBP,
 	stripeClient,
 	STRIPE_MONTH_SUB_PRICE_ID,
 	STRIPE_SAAS_PRODUCT_ID,
 	STRIPE_YEAR_SUB_PRICE_ID,
-} from '../../lib';
+} from '~/lib';
 
 interface Props {
 	monthlyUnitPrice: string;

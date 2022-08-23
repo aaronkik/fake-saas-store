@@ -1,4 +1,4 @@
-import { formatValueToGBP } from '../../lib/intl';
+import { formatValueToGBP } from '~/lib/intl';
 
 describe('formatValueToGBP', () => {
 	it('formats a number to a GBP currency string', () => {

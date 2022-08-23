@@ -1,7 +1,7 @@
 import EmailValidator from 'email-validator';
 import { rest } from 'msw';
-import { sendMail } from '../../lib/email';
-import { ContactApiRequest } from '../../types/contact';
+import { sendMail } from '~/lib/email';
+import { ContactApiRequest } from '~/types/contact';
 
 const handlers = [
 	rest.post('/api/contact', async (req, res, ctx) => {

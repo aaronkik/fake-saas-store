@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { PricingContent } from '../../components/pricing';
+import { PricingContent } from '~/components/pricing';
 
 describe('<PricingContent />', () => {
 	describe('Clicking the pricing button switch', () => {

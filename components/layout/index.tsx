@@ -1,4 +1,4 @@
-import Container from '../container';
+import { Container } from '~/components';
 import Footer from './footer';
 import Header from './header';
 

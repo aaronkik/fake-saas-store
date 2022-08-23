@@ -3,8 +3,7 @@ import {
 	GlobeIcon,
 	LightningBoltIcon,
 } from '@heroicons/react/outline';
-import Section from '../section';
-import SectionHeader from '../section-header';
+import { Section, SectionHeader } from '~/components';
 
 const benefitItems = [
 	{

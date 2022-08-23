@@ -1,9 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import AnimateHeight from 'react-animate-height';
-import Divider from '../divider';
-import Section from '../section';
-import SectionHeader from '../section-header';
+import { Divider, Section, SectionHeader } from '~/components';
 
 const accordionContent = [
 	{

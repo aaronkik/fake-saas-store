@@ -1,6 +1,5 @@
-import { PRODUCT_VIDEO } from '../../constants/urls';
-import Section from '../section';
-import SectionHeader from '../section-header';
+import { Section, SectionHeader } from '~/components';
+import { PRODUCT_VIDEO } from '~/constants/urls';
 
 const ReinforcementStatement = () => (
 	<Section className='flex flex-col items-start gap-8 md:flex-row md:items-center'>

@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { Container } from '../../components';
-import { ContactForm } from '../../components/contact';
+import { Container } from '~/components';
+import { ContactForm } from '~/components/contact';
 
 const ContactPage = () => (
 	<>

@@ -1,8 +1,8 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { rest } from 'msw';
-import { ContactForm } from '../../../components/contact';
-import { server } from '../../../__mocks__/msw-server';
+import { ContactForm } from '~/components/contact';
+import { server } from '~/__mocks__/msw-server';
 
 describe('<ContactForm />', () => {
 	it('Displays form errors after clicking submit button with empty fields', async () => {
