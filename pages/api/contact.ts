@@ -34,7 +34,9 @@ const contact = async (
       subject: 'Contact form submission',
       message,
     });
-    res.status(200).json({ data: `Email sent to ${email}` });
+    res
+      .status(200)
+      .json({ data: 'Email sent. You may need to check your spam folder.' });
   } catch (error) {
     console.error(error);
     return res.status(400).json({ error: 'Failed to send email' });
