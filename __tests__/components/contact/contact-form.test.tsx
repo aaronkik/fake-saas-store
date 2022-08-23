@@ -5,77 +5,77 @@ import { ContactForm } from '~/components/contact';
 import { server } from '~/__mocks__/msw-server';
 
 describe('<ContactForm />', () => {
-	it('Displays form errors after clicking submit button with empty fields', async () => {
-		const user = userEvent.setup();
+  it('Displays form errors after clicking submit button with empty fields', async () => {
+    const user = userEvent.setup();
 
-		render(<ContactForm />);
+    render(<ContactForm />);
 
-		expect(screen.getByLabelText(/email/i)).toHaveValue('');
-		expect(screen.getByLabelText(/message/i)).toHaveValue('');
+    expect(screen.getByLabelText(/email/i)).toHaveValue('');
+    expect(screen.getByLabelText(/message/i)).toHaveValue('');
 
-		const emailFormErrorTestId = 'emailErrorText';
-		const messageFormErrorTestId = 'messageErrorText';
+    const emailFormErrorTestId = 'emailErrorText';
+    const messageFormErrorTestId = 'messageErrorText';
 
-		expect(screen.queryByTestId(emailFormErrorTestId)).not.toBeInTheDocument();
-		expect(
-			screen.queryByTestId(messageFormErrorTestId)
-		).not.toBeInTheDocument();
+    expect(screen.queryByTestId(emailFormErrorTestId)).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId(messageFormErrorTestId)
+    ).not.toBeInTheDocument();
 
-		await user.click(screen.getByRole('button', { name: /submit/i }));
+    await user.click(screen.getByRole('button', { name: /submit/i }));
 
-		await waitFor(() => {
-			expect(screen.getByTestId(emailFormErrorTestId)).toBeInTheDocument();
-			expect(screen.getByTestId(messageFormErrorTestId)).toBeInTheDocument();
-		});
-	});
+    await waitFor(() => {
+      expect(screen.getByTestId(emailFormErrorTestId)).toBeInTheDocument();
+      expect(screen.getByTestId(messageFormErrorTestId)).toBeInTheDocument();
+    });
+  });
 
-	it('Submits with valid fields and an error message is shown when api returns error', async () => {
-		const user = userEvent.setup();
+  it('Submits with valid fields and an error message is shown when api returns error', async () => {
+    const user = userEvent.setup();
 
-		render(<ContactForm />);
+    render(<ContactForm />);
 
-		const typedEmail = 'test@example.com';
-		const typedMessage = 'This is a test message';
+    const typedEmail = 'test@example.com';
+    const typedMessage = 'This is a test message';
 
-		await user.type(screen.getByLabelText(/email/i), typedEmail);
-		await user.type(screen.getByLabelText(/message/i), typedMessage);
+    await user.type(screen.getByLabelText(/email/i), typedEmail);
+    await user.type(screen.getByLabelText(/message/i), typedMessage);
 
-		expect(screen.getByLabelText(/email/i)).toHaveValue(typedEmail);
-		expect(screen.getByLabelText(/message/i)).toHaveValue(typedMessage);
+    expect(screen.getByLabelText(/email/i)).toHaveValue(typedEmail);
+    expect(screen.getByLabelText(/message/i)).toHaveValue(typedMessage);
 
-		server.use(
-			rest.post('/api/contact', (req, res, ctx) =>
-				res(ctx.status(500), ctx.json({ error: 'An error occured' }))
-			)
-		);
+    server.use(
+      rest.post('/api/contact', (req, res, ctx) =>
+        res(ctx.status(500), ctx.json({ error: 'An error occured' }))
+      )
+    );
 
-		await user.click(screen.getByRole('button', { name: /submit/i }));
+    await user.click(screen.getByRole('button', { name: /submit/i }));
 
-		await waitFor(() => {
-			expect(screen.getByTestId('contactErrorText')).toBeInTheDocument();
-		});
-	});
+    await waitFor(() => {
+      expect(screen.getByTestId('contactErrorText')).toBeInTheDocument();
+    });
+  });
 
-	it('Submits with valid fields and success message is shown', async () => {
-		const user = userEvent.setup();
+  it('Submits with valid fields and success message is shown', async () => {
+    const user = userEvent.setup();
 
-		render(<ContactForm />);
+    render(<ContactForm />);
 
-		const typedEmail = 'test@example.com';
-		const typedMessage = 'This is a test message';
+    const typedEmail = 'test@example.com';
+    const typedMessage = 'This is a test message';
 
-		await user.type(screen.getByLabelText(/email/i), typedEmail);
-		await user.type(screen.getByLabelText(/message/i), typedMessage);
+    await user.type(screen.getByLabelText(/email/i), typedEmail);
+    await user.type(screen.getByLabelText(/message/i), typedMessage);
 
-		expect(screen.getByLabelText(/email/i)).toHaveValue(typedEmail);
-		expect(screen.getByLabelText(/message/i)).toHaveValue(typedMessage);
+    expect(screen.getByLabelText(/email/i)).toHaveValue(typedEmail);
+    expect(screen.getByLabelText(/message/i)).toHaveValue(typedMessage);
 
-		await user.click(screen.getByRole('button', { name: /submit/i }));
+    await user.click(screen.getByRole('button', { name: /submit/i }));
 
-		await waitFor(() => {
-			expect(screen.getByLabelText(/email/i)).toHaveValue('');
-			expect(screen.getByLabelText(/message/i)).toHaveValue('');
-			expect(screen.getByTestId('contactSuccessText')).toBeInTheDocument();
-		});
-	});
+    await waitFor(() => {
+      expect(screen.getByLabelText(/email/i)).toHaveValue('');
+      expect(screen.getByLabelText(/message/i)).toHaveValue('');
+      expect(screen.getByTestId('contactSuccessText')).toBeInTheDocument();
+    });
+  });
 });
