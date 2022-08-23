@@ -1,5 +1,6 @@
 import EmailValidator from 'email-validator';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { CONTACT_MESSAGE_MAX_LENGTH } from '~/constants/form';
 import { sendMail } from '../../lib/email';
 import { ContactApiRequest, ContactApiResponse } from '../../types/contact';
 
@@ -19,6 +20,12 @@ const contact = async (
 
   if (!message) {
     return res.status(400).json({ error: 'Message not present in body' });
+  }
+
+  if (message.length > CONTACT_MESSAGE_MAX_LENGTH) {
+    return res.status(400).json({
+      error: `Message exceeds max length ${CONTACT_MESSAGE_MAX_LENGTH}`,
+    });
   }
 
   try {

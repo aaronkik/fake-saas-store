@@ -1,8 +1,15 @@
+import {
+  CONTACT_MESSAGE_MAX_LENGTH,
+  CONTACT_MESSAGE_MAX_LENGTH_MESSAGE,
+} from '~/constants/form';
+
 describe('Contact Page', () => {
   describe('Contact Form', () => {
     beforeEach(() => {
       cy.visit('/contact');
     });
+
+    const validTestEmail = Cypress.env('TEST_EMAIL');
 
     const emailInput = 'input[name="email"]';
     const messageInput = 'textarea[name="message"]';
@@ -35,9 +42,21 @@ describe('Contact Page', () => {
       });
     });
 
+    it('Displays max length error message when message exceeds max length on submit', () => {
+      cy.get('form').within(() => {
+        cy.get(emailInput).type(validTestEmail);
+        cy.get(messageInput).type('a'.repeat(CONTACT_MESSAGE_MAX_LENGTH + 1));
+
+        cy.get(submitButton).click();
+
+        cy.get(successResponseMessage).should('not.exist');
+        cy.get(messageFormError).contains(CONTACT_MESSAGE_MAX_LENGTH_MESSAGE);
+      });
+    });
+
     it('Submits with valid fields and responds success text', () => {
       cy.get('form').within(() => {
-        cy.get(emailInput).type(Cypress.env('TEST_EMAIL'));
+        cy.get(emailInput).type(validTestEmail);
         cy.get(messageInput).type('This is a test message');
 
         cy.get(submitButton).click();

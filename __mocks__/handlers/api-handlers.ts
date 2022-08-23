@@ -1,5 +1,6 @@
 import EmailValidator from 'email-validator';
 import { rest } from 'msw';
+import { CONTACT_MESSAGE_MAX_LENGTH } from '~/constants/form';
 import { sendMail } from '~/lib/email';
 import { ContactApiRequest } from '~/types/contact';
 
@@ -15,6 +16,15 @@ const handlers = [
       return res(
         ctx.status(400),
         ctx.json({ error: 'Message not present in body' })
+      );
+    }
+
+    if (message.length > CONTACT_MESSAGE_MAX_LENGTH) {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          error: `Message exceeds max length ${CONTACT_MESSAGE_MAX_LENGTH}`,
+        })
       );
     }
 
