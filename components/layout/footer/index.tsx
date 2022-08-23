@@ -15,7 +15,7 @@ const Footer = () => (
 		<div className='flex flex-row flex-wrap justify-between gap-4 py-4'>
 			<div className='flex flex-col gap-2'>
 				<div>
-					<Logo className='h-6 w-auto' />
+					<Logo className='h-8 w-auto' />
 				</div>
 				<div className='flex flex-row gap-1'>
 					<a
