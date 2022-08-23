@@ -28,6 +28,7 @@ const ContactForm = () => {
     handleSubmit,
     register,
     reset: resetForm,
+    watch,
   } = useForm<FormFields>({
     defaultValues: {
       email: '',
@@ -96,6 +97,9 @@ const ContactForm = () => {
           },
         })}
       />
+      <p className='text-xs text-neutral-500 self-end'>{`${
+        watch('message').length
+      }/${CONTACT_MESSAGE_MAX_LENGTH}`}</p>
       {messageErrors && (
         <FormErrorMessage data-testid='messageErrorText'>
           {messageErrors.message}
