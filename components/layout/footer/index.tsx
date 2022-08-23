@@ -10,8 +10,6 @@ const footerLinks = [
 	{ path: '/privacy.txt', name: 'Privacy' },
 ];
 
-const FULL_YEAR = new Date().getFullYear();
-
 const Footer = () => (
 	<footer className='flex flex-col py-4 px-2 md:py-8 md:px-4'>
 		<div className='flex flex-row flex-wrap justify-between gap-4 py-4'>
@@ -45,7 +43,7 @@ const Footer = () => (
 			</div>
 		</div>
 		<p className='text-xs text-neutral-600 dark:text-neutral-400'>
-			&copy; 2022 - {FULL_YEAR}. All rights reserved.
+			&copy; 2022. All rights reserved.
 		</p>
 	</footer>
 );
