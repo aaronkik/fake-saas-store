@@ -11,6 +11,10 @@ describe('Contact Page', () => {
 
     const validTestEmail = Cypress.env('TEST_EMAIL');
 
+    if (!validTestEmail || typeof validTestEmail !== 'string') {
+      throw new Error('Missing env: CYPRESS_TEST_EMAIL');
+    }
+
     const emailInput = 'input[name="email"]';
     const messageInput = 'textarea[name="message"]';
     const submitButton = 'button[type="submit"]';
@@ -44,7 +48,9 @@ describe('Contact Page', () => {
 
     it('Displays max length error message when message exceeds max length on submit', () => {
       cy.get('form').within(() => {
-        cy.get(emailInput).type(validTestEmail);
+        cy.get(emailInput)
+          .invoke('attr', 'type', 'password')
+          .type(validTestEmail, { log: false });
         cy.get(messageInput).type('a'.repeat(CONTACT_MESSAGE_MAX_LENGTH + 1));
 
         cy.get(submitButton).click();
@@ -56,7 +62,9 @@ describe('Contact Page', () => {
 
     it('Submits with valid fields and responds success text', () => {
       cy.get('form').within(() => {
-        cy.get(emailInput).type(validTestEmail);
+        cy.get(emailInput)
+          .invoke('attr', 'type', 'password')
+          .type(validTestEmail, { log: false });
         cy.get(messageInput).type('This is a test message');
 
         cy.get(submitButton).click();
