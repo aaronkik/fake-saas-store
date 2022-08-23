@@ -13,6 +13,8 @@ public/mockServiceWorker.js
 
 # cypress
 cypress.env.json
+cypress/videos
+cypress/screenshots
 
 # next.js
 /.next/
