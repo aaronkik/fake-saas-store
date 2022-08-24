@@ -11,7 +11,7 @@ env:
   STRIPE_YEAR_SUB_PRICE_ID: ${{ secrets.STRIPE_YEAR_SUB_PRICE_ID }}
 
 jobs:
-  setup-node:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
