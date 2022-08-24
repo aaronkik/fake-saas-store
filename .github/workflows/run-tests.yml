@@ -1,5 +1,15 @@
 name: Run Tests
+
 on: [push]
+
+env:
+  SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+  SENDGRID_VERIFIED_SENDER_EMAIL: ${{ secrets.SENDGRID_VERIFIED_SENDER_EMAIL }}
+  STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+  STRIPE_SAAS_PRODUCT_ID: ${{ secrets.STRIPE_SAAS_PRODUCT_ID }}
+  STRIPE_MONTH_SUB_PRICE_ID: ${{ secrets.STRIPE_MONTH_SUB_PRICE_ID }}
+  STRIPE_YEAR_SUB_PRICE_ID: ${{ secrets.STRIPE_YEAR_SUB_PRICE_ID }}
+
 jobs:
   setup-node:
     runs-on: ubuntu-latest
