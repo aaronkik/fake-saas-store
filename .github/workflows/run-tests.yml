@@ -29,6 +29,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           install: false
+          browser: chrome
           record: true
           build: npm run build
           command: npm run e2e:headless

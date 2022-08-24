@@ -11,7 +11,7 @@
     "test": "jest --watch",
     "test:ci": "jest --ci --colors",
     "cypress": "cypress open",
-    "cypress:headless": "cypress run",
+    "cypress:headless": "cypress run --record",
     "e2e": "start-server-and-test start http://localhost:3000 cypress",
     "e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless"
   },
