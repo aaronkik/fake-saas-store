@@ -1,0 +1,19 @@
+name: Run Tests
+on: [push]
+jobs:
+  setup-node:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+  run-jest:
+    steps:
+      - name: Run Jest CI
+        run: npm run test:ci
