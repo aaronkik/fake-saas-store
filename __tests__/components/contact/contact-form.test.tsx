@@ -1,4 +1,9 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { rest } from 'msw';
 import { ContactForm } from '~/components/contact';
@@ -104,6 +109,42 @@ describe('<ContactForm />', () => {
       expect(screen.getByLabelText(/email/i)).toHaveValue('');
       expect(screen.getByLabelText(/message/i)).toHaveValue('');
       expect(screen.getByTestId('contactSuccessText')).toBeInTheDocument();
+    });
+  });
+
+  it('Displays a loading spinner on submit and hides on response', async () => {
+    const user = userEvent.setup();
+
+    render(<ContactForm />);
+
+    expect(screen.queryByTestId('spinner')).not.toBeInTheDocument();
+
+    await user.type(screen.getByLabelText(/email/i), 'test@example.com');
+    await user.type(
+      screen.getByLabelText(/message/i),
+      'This is a test message'
+    );
+
+    const apiDelay = 500;
+    server.use(
+      rest.post('/api/contact', (req, res, ctx) =>
+        res(
+          ctx.delay(apiDelay),
+          ctx.status(200),
+          ctx.json({ data: 'Successful response' })
+        )
+      )
+    );
+
+    await user.click(screen.getByRole('button', { name: /submit/i }));
+
+    const loadingSpinnerTestId = 'loadingSpinner';
+    await waitFor(() => {
+      expect(screen.getByTestId(loadingSpinnerTestId)).toBeInTheDocument();
+    });
+
+    await waitForElementToBeRemoved(screen.getByTestId(loadingSpinnerTestId), {
+      timeout: apiDelay * 1.5,
     });
   });
 });

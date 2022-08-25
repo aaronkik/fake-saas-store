@@ -1,7 +1,7 @@
 import EmailValidator from 'email-validator';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, FormErrorMessage, FormLabel } from '~/components';
+import { Button, FormErrorMessage, FormLabel, Spinner } from '~/components';
 import {
   CONTACT_MESSAGE_MAX_LENGTH,
   CONTACT_MESSAGE_MAX_LENGTH_MESSAGE,
@@ -24,6 +24,7 @@ const ContactForm = () => {
   const {
     formState: {
       errors: { email: emailErrors, message: messageErrors },
+      isSubmitting,
     },
     handleSubmit,
     register,
@@ -107,6 +108,9 @@ const ContactForm = () => {
       )}
       <ContactFormResponse contactFormResponse={contactApiResponse} />
       <Button className='mt-2 self-end' type='submit'>
+        {isSubmitting && (
+          <Spinner data-testid='loadingSpinner' className='mr-2 h-4 w-4' />
+        )}
         Submit
       </Button>
     </form>
