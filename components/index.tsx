@@ -7,3 +7,4 @@ export * from './icons';
 export { default as Layout } from './layout';
 export { default as Section } from './section';
 export { default as SectionHeader } from './section-header';
+export { default as Spinner } from './spinner';
