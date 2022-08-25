@@ -37,7 +37,6 @@ const Home = () => (
     <Container>
       <CallToAction />
     </Container>
-    <Divider />
   </>
 );
 

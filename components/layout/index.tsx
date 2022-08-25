@@ -1,4 +1,3 @@
-import { Container } from '~/components';
 import Footer from './footer';
 import Header from './header';
 
@@ -10,9 +9,7 @@ const Layout = ({ children }: Props) => (
   <>
     <Header />
     <main>{children}</main>
-    <Container>
-      <Footer />
-    </Container>
+    <Footer />
   </>
 );
 
