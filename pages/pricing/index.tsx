@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Container, Divider } from '~/components';
+import { Container } from '~/components';
 import { PricingContent } from '~/components/pricing';
 import {
   formatValueToGBP,
@@ -31,7 +31,6 @@ const PricingPage = ({ monthlyUnitPrice, yearlyUnitPrice }: Props) => (
         />
       </div>
     </Container>
-    <Divider />
   </>
 );
 
