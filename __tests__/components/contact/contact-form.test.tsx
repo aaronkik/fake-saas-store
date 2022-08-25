@@ -117,7 +117,8 @@ describe('<ContactForm />', () => {
 
     render(<ContactForm />);
 
-    expect(screen.queryByTestId('spinner')).not.toBeInTheDocument();
+    const loadingSpinnerTestId = 'loadingSpinner';
+    expect(screen.queryByTestId(loadingSpinnerTestId)).not.toBeInTheDocument();
 
     await user.type(screen.getByLabelText(/email/i), 'test@example.com');
     await user.type(
@@ -138,7 +139,6 @@ describe('<ContactForm />', () => {
 
     await user.click(screen.getByRole('button', { name: /submit/i }));
 
-    const loadingSpinnerTestId = 'loadingSpinner';
     await waitFor(() => {
       expect(screen.getByTestId(loadingSpinnerTestId)).toBeInTheDocument();
     });
